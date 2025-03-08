@@ -1,4 +1,4 @@
-# Module #<!-- Insert Module Number --> Plan
+# Module # 4 Plan
 ## CSE 310 – Applied Programming
 
 |Name|Date|Teacher|

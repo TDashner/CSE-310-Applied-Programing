@@ -1,12 +1,19 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from textblob import TextBlob
 
 # Load dataset (update the filename accordingly)
-df = pd.read_csv("restaurant_reviews.csv")
+df = pd.read_csv("C:/path/to/restaurant_reviews.csv")
 
 # Display basic info about dataset
 print(df.info())
 print(df.head())
+
+# Handle missing values
+df = df.dropna(subset=['cuisine', 'rating', 'review'])
+
+# Convert rating column to numeric
+df['rating'] = pd.to_numeric(df['rating'], errors='coerce')
 
 # Define the first question: What are the most popular cuisines based on review count?
 cuisine_counts = df['cuisine'].value_counts()
@@ -17,6 +24,20 @@ print(cuisine_counts.head(10))
 cuisine_avg_rating = df.groupby('cuisine')['rating'].mean().sort_values(ascending=False)
 print("Average rating per cuisine:")
 print(cuisine_avg_rating.head(10))
+
+# Normalize ratings to a scale of 0-5
+df['normalized_rating'] = (df['rating'] - df['rating'].min()) / (df['rating'].max() - df['rating'].min()) * 5
+
+# Sentiment analysis on reviews
+def get_sentiment(text):
+    return TextBlob(text).sentiment.polarity
+
+df['sentiment_score'] = df['review'].apply(get_sentiment)
+
+# Third question: Which cuisines have the highest positive sentiment?
+cuisine_sentiment = df.groupby('cuisine')['sentiment_score'].mean().sort_values(ascending=False)
+print("Cuisines with highest sentiment:")
+print(cuisine_sentiment.head(10))
 
 # Stretch Challenge: Visualization
 plt.figure(figsize=(10,5))
@@ -34,3 +55,15 @@ plt.xlabel('Cuisine')
 plt.ylabel('Average Rating')
 plt.xticks(rotation=45)
 plt.show()
+
+plt.figure(figsize=(10,5))
+cuisine_sentiment.head(10).plot(kind='bar', color='lightgreen')
+plt.title('Top 10 Cuisines by Sentiment Score')
+plt.xlabel('Cuisine')
+plt.ylabel('Average Sentiment Score')
+plt.xticks(rotation=45)
+plt.show()
+
+# Additional descriptive statistics
+print("Descriptive statistics for numerical columns:")
+print(df.describe())

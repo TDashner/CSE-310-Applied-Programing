@@ -1,0 +1,36 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load dataset (update the filename accordingly)
+df = pd.read_csv("restaurant_reviews.csv")
+
+# Display basic info about dataset
+print(df.info())
+print(df.head())
+
+# Define the first question: What are the most popular cuisines based on review count?
+cuisine_counts = df['cuisine'].value_counts()
+print("Most popular cuisines:")
+print(cuisine_counts.head(10))
+
+# Define the second question: What is the average rating for different cuisines?
+cuisine_avg_rating = df.groupby('cuisine')['rating'].mean().sort_values(ascending=False)
+print("Average rating per cuisine:")
+print(cuisine_avg_rating.head(10))
+
+# Stretch Challenge: Visualization
+plt.figure(figsize=(10,5))
+cuisine_counts.head(10).plot(kind='bar', color='skyblue')
+plt.title('Top 10 Most Popular Cuisines')
+plt.xlabel('Cuisine')
+plt.ylabel('Number of Reviews')
+plt.xticks(rotation=45)
+plt.show()
+
+plt.figure(figsize=(10,5))
+cuisine_avg_rating.head(10).plot(kind='bar', color='lightcoral')
+plt.title('Top 10 Highest Rated Cuisines')
+plt.xlabel('Cuisine')
+plt.ylabel('Average Rating')
+plt.xticks(rotation=45)
+plt.show()

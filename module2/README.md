@@ -45,12 +45,16 @@ The key is changed, and the cipher object is updated.
 # Useful Websites
 
 {Make a list of websites that you found helpful in this project}
-* [Web Site Name](http://url.link.goes.here)
-* [Web Site Name](http://url.link.goes.here)
+* [Youtube](https://www.youtube.com/watch?v=VKSlacce9QQ): An example of a peer to peer python module
+* [Chatgpt](https://chatgpt.com/): This was used for error handling and helped tell me what the errors meant
+* [W3Schools](https://www.w3schools.com/cybersecurity/cybersecurity_networking.php): Networking basics
+
 
 # Future Work
 
 {Make a list of things that you need to fix, improve, and add in the future.}
 * Item 1
+Make the name display possibly all uppercase (and it works)
 * Item 2
+Make it more enticing to look at. Maybe add some css to it later on
 * Item 3

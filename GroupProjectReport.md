@@ -37,6 +37,12 @@ preventing you from completing this requirement.
 |Your Project Requirements|Your Team Response|
 |-|-|
 | | |
+Authenticated Login (Google)	Yes
+Menu/General Site Navigation	Yes
+Store + Retrieve User Data	Yes
+Dynamically populate website with Retrieved User Data	Yes
+Goal Tracking + Track Streaks    Yes
+
 ## Indiviual Response
 ### Retrospective
 What was at least one connection you made in this class to the Gospel of Jesus
